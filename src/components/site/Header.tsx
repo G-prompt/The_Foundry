@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { ButtonAnchor, ButtonLink } from "./Button";
+import { ThemeToggle } from "./ThemeToggle";
 import { navLinks, SLACK_INVITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -56,15 +57,17 @@ export function Header() {
             ))}
           </nav>
 
-          <ButtonAnchor
-            href={SLACK_INVITE_URL}
-            target="_blank"
-            rel="noreferrer noopener"
-            size="sm"
-            className="hidden md:inline-flex"
-          >
-            Join the Community
-          </ButtonAnchor>
+          <div className="hidden md:flex md:items-center md:gap-1.5">
+            <ThemeToggle />
+            <ButtonAnchor
+              href={SLACK_INVITE_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              size="sm"
+            >
+              Join the Community
+            </ButtonAnchor>
+          </div>
 
           <button
             type="button"
@@ -106,14 +109,17 @@ export function Header() {
                   </li>
                 ))}
               </ul>
-              <ButtonAnchor
-                href={SLACK_INVITE_URL}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="mt-3 w-full"
-              >
-                Join the Community
-              </ButtonAnchor>
+              <div className="mt-3 flex items-center gap-3">
+                <ThemeToggle />
+                <ButtonAnchor
+                  href={SLACK_INVITE_URL}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex-1"
+                >
+                  Join the Community
+                </ButtonAnchor>
+              </div>
             </nav>
           </motion.div>
         ) : null}

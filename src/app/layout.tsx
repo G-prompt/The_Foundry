@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import "./globals.css";
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -34,11 +35,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <div className="flex-1">{children}</div>
-          <Footer />
-        </div>
+        <ThemeProvider>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -91,9 +91,17 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="border-t border-border bg-surface md:hidden"
+            className="absolute left-0 right-0 top-full z-50 border-b border-border bg-surface shadow-lift md:hidden"
           >
-            <nav aria-label="Mobile" className="mx-auto max-w-6xl px-5 py-4">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white/[0.06] to-transparent"
+            />
+            <nav aria-label="Mobile" className="relative mx-auto max-w-6xl px-5 py-4">
               <ul className="flex flex-col">
                 {navLinks.map((link) => (
                   <li key={link.to}>

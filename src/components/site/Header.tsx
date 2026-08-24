@@ -95,11 +95,11 @@ export function Header() {
           >
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-foreground/10 to-transparent"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white/[0.06] to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-linear-to-b from-white/6 to-transparent"
             />
             <nav aria-label="Mobile" className="relative mx-auto max-w-6xl px-5 py-4">
               <ul className="flex flex-col">

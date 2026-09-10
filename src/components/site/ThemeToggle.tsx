@@ -27,7 +27,7 @@ export function ThemeToggle() {
         aria-label={ariaLabel}
         aria-hidden="true"
         tabIndex={-1}
-        className="grid size-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-muted-foreground md:inline-flex"
+        className="grid size-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-muted-foreground"
       >
         <span className="size-5" />
       </button>
@@ -40,7 +40,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={ariaLabel}
       title={ariaLabel}
-      className="grid size-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-foreground transition-colors hover:border-accent hover:text-accent md:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="grid size-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-foreground transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <span className="relative grid size-5 place-items-center">
         <AnimatePresence mode="wait" initial={false}>

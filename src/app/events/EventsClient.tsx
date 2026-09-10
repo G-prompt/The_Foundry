@@ -64,8 +64,8 @@ function EventGrid({ items }: { items: FoundryEvent[] }) {
     <AnimatePresence mode="popLayout">
       <motion.div
         key={items.map((i) => i.id).join("-")}
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3"

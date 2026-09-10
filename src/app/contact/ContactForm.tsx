@@ -3,27 +3,34 @@
 import { useState, type FormEvent } from "react";
 
 import { Button } from "@/components/site/Button";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { FORMSPREE_ENDPOINT } from "@/lib/site";
 
 const fieldClass =
   "w-full rounded-md border border-input bg-surface px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 transition-colors focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40";
 
 export function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  // Client-side only: opens the visitor's mail client.
-  // TODO: swap for a real form handler (e.g. Formspree/Resend) when a backend exists.
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const name = String(form.get("name") ?? "");
-    const email = String(form.get("email") ?? "");
-    const message = String(form.get("message") ?? "");
+    setStatus("submitting");
 
-    const subject = encodeURIComponent(`The Foundry — message from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: new FormData(e.currentTarget),
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      e.currentTarget.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -73,9 +80,18 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <Button type="submit">Send message</Button>
-        <p aria-live="polite" className="font-mono text-xs text-muted-foreground">
-          {sent ? "Your mail client should be open — thanks!" : "Opens your mail client."}
+        <Button type="submit" disabled={status === "submitting"}>
+          {status === "submitting" ? "Sending..." : "Send message"}
+        </Button>
+        <p
+          aria-live="polite"
+          className={`font-mono text-xs ${status === "error" ? "text-destructive" : "text-muted-foreground"}`}
+        >
+          {status === "success"
+            ? "Message sent — thanks for reaching out."
+            : status === "error"
+              ? "Something went wrong. Please try again."
+              : "We usually reply within a few days."}
         </p>
       </div>
     </form>

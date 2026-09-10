@@ -42,7 +42,7 @@ export function Header() {
         <Logo />
 
         <div className="flex items-center gap-1.5">
-          <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+          <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
@@ -57,7 +57,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex md:items-center md:gap-1.5">
+          <div className="hidden lg:flex lg:items-center lg:gap-1.5">
             <ThemeToggle />
             <ButtonAnchor
               href={SLACK_INVITE_URL}
@@ -75,7 +75,7 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="grid size-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-foreground md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="grid size-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-foreground lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -91,7 +91,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="absolute left-0 right-0 top-full z-50 border-b border-border bg-surface shadow-lift md:hidden"
+            className="absolute left-0 right-0 top-full z-50 border-b border-border bg-surface shadow-lift lg:hidden"
           >
             <div
               aria-hidden="true"

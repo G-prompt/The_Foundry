@@ -10,6 +10,8 @@ import { ButtonAnchor, ButtonLink } from "./Button";
 import { ThemeToggle } from "./ThemeToggle";
 import { navLinks, SLACK_INVITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+
 
 function Logo() {
   return (
@@ -18,9 +20,13 @@ function Logo() {
       className="group flex min-w-0 items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       aria-label="The Foundry — home"
     >
-      <span className="grid size-8 shrink-0 place-items-center rounded-md bg-primary font-mono text-sm font-bold text-primary-foreground transition-colors group-hover:bg-accent">
-        F
-      </span>
+      <Image
+        src="/foundry.png"
+        width={50}
+        height={50}
+        alt="logo"
+        className="brightness-0 dark:invert"
+      />
       <span className="truncate font-display text-base font-semibold tracking-tight">
         The Foundry
       </span>

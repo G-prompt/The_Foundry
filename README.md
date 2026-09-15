@@ -10,56 +10,64 @@ The Foundry exists because building alone is slower and lonelier than it needs t
 
 - Introduce newcomers to the community and what membership actually looks like (**About**)
 - Lay out the mission and core values that guide how the community operates (**Mission**)
+- Provide curated free technical learning resources and pathways to build together (**Free Library**)
 - Surface what's on — hackathons, seminars, and other tech events — both upcoming and past (**Events**)
 - Share field notes and write-ups from members (**Blog**)
-- Make it easy to get in touch or join the community Slack, which is where the day-to-day collaboration actually happens (**Contact**)
+- Make it easy to get in touch and join the community Slack, where day-to-day collaboration happens (**Contact**)
 
 ## Pages
 
-| Route       | Description                                                              |
-| ----------- | ------------------------------------------------------------------------- |
-| `/`         | Landing page — hero, community stats, highlights, upcoming events, latest posts |
-| `/about`    | Origin story, what members can expect, organizer profiles                |
-| `/mission`  | Mission statement, core values, vision                                    |
-| `/events`   | Filterable hackathons, seminars, and other tech events (upcoming + past) |
-| `/blog`     | Filterable member write-ups and field notes                              |
-| `/contact`  | Contact form + **Join our Slack** section, plus other contact methods    |
+| Route               | Description                                                                     |
+| ------------------- | ------------------------------------------------------------------------------- |
+| `/`                 | Landing page — hero, community stats, highlights, upcoming events, latest posts |
+| `/about`            | Origin story, what members can expect, organizer profiles                       |
+| `/mission`          | Mission statement, core values, vision                                           |
+| `/library`          | Curated free technical courses with pathways to discuss and build on Slack      |
+| `/library/callback` | Return page with community guidance after completing external courses           |
+| `/events`           | Filterable hackathons, seminars, and other tech events (upcoming + past)        |
+| `/blog`             | Filterable member write-ups and field notes                                     |
+| `/contact`          | Contact form powered by Formspree + **Join our Slack** section and direct info   |
 
 ## Tech stack
 
 - **Next.js** (App Router) + **TypeScript**
-- **Tailwind CSS v4** — light, minimal, techy design system (off-white base, near-black ink, one electric-blue accent)
-- **Framer Motion** (`motion`) — on-scroll reveals, page transitions, animated mobile nav
+- **Tailwind CSS v4** — light, minimal, techy design system with light and dark mode support
+- **next-themes** — theme management and dark/light mode toggle
+- **Framer Motion** (`motion`) — on-scroll reveals, page transitions, animated mobile navigation
 - **lucide-react** for icons
-- No backend — this is a frontend-only site. The contact form opens the visitor's mail client via `mailto:`; there's no database or API layer.
+- **Formspree** — AJAX contact form submission with live status handling
 
 ## Project structure
 
 ```
 src/
   app/
-    layout.tsx          Root layout — fonts, Header, Footer
-    page.tsx             Home
-    about/page.tsx
-    mission/page.tsx
+    layout.tsx            Root layout — fonts, ThemeProvider, Header, Footer
+    page.tsx               Home
+    about/page.tsx         About page
+    mission/page.tsx       Mission page
+    library/
+      page.tsx             Free course library (server component)
+      callback/page.tsx    Post-course return & community orientation
     events/
-      page.tsx           Metadata (server component)
-      EventsClient.tsx    Filterable event grid (client component)
+      page.tsx             Metadata (server component)
+      EventsClient.tsx      Filterable event grid (client component)
     blog/
-      page.tsx           Metadata (server component)
-      BlogClient.tsx      Filterable post grid (client component)
+      page.tsx             Metadata (server component)
+      BlogClient.tsx        Filterable post grid (client component)
     contact/
-      page.tsx           Slack section + contact info
-      ContactForm.tsx     mailto: form (client component)
-    not-found.tsx        Custom 404
-    error.tsx             Error boundary
-    globals.css           Tailwind v4 theme tokens + design system
-  components/site/        Shared UI: Header, Footer, Button, Card, Reveal, PageHero, SectionWrapper
+      page.tsx             Slack section + contact info
+      ContactForm.tsx       Formspree-connected contact form (client component)
+    loading.tsx            Global route transition & workspace loading animation
+    not-found.tsx          Custom 404
+    error.tsx               Error boundary
+    globals.css             Tailwind v4 theme tokens + custom animations & design system
+  components/site/          Shared UI: Header, Footer, Button, Card, Reveal, PageHero, SectionWrapper, ThemeToggle
   data/
-    events.ts             Sample event data (typed) — swap for real events or a CMS
-    posts.ts               Sample blog post data (typed) — swap for real posts or a CMS
+    events.ts               Sample event data (typed) — swap for real events or a CMS
+    posts.ts                 Sample blog post data (typed) — swap for real posts or a CMS
   lib/
-    site.ts                 Site-wide constants: nav links, Slack invite URL, contact email, socials
+    site.ts                 Site-wide constants: nav links, Slack URL, Formspree endpoint, contact email, socials
     utils.ts                 `cn()` class-merging helper
 ```
 
@@ -81,11 +89,10 @@ npm run start
 
 ## Things to swap before launch
 
-A few placeholders are marked `// TODO` in the code and should be replaced with real values:
+A few placeholders or configurations can be customized before launch:
 
-- **`src/lib/site.ts`** — `SLACK_INVITE_URL` (real Slack invite link), `CONTACT_EMAIL`, `socials` (real GitHub/X/LinkedIn URLs)
+- **`src/lib/site.ts`** — verify `SLACK_INVITE_URL`, `COURSE_LIBRARY_URL`, `CONTACT_EMAIL`, `FORMSPREE_ENDPOINT`, and update `socials` with real GitHub/X/LinkedIn profile URLs
 - **`src/components/site/Footer.tsx`** — social icon links
 - **`src/data/events.ts`** — sample events; wire up to real events or a CMS
 - **`src/data/posts.ts`** — sample blog posts; wire up to MDX or a CMS
 - **`src/app/about/page.tsx`** — placeholder organizer names/initials; swap for real people and avatars
-- **`src/app/contact/ContactForm.tsx`** — currently opens the visitor's mail client (`mailto:`); swap for a real form handler (e.g. Formspree, Resend) if/when a backend exists

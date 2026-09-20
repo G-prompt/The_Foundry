@@ -10,25 +10,40 @@ const fieldClass =
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus("submitting");
+    setErrorMessage(null);
 
     try {
+      const formData = new FormData(form);
+
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        body: new FormData(e.currentTarget),
+        body: formData,
         headers: { Accept: "application/json" },
       });
 
       if (!response.ok) {
-        throw new Error("Form submission failed");
+        const resData = await response.json().catch(() => null);
+        if (resData && resData.errors && Array.isArray(resData.errors)) {
+          const msg = resData.errors.map((err: { message: string }) => err.message).join(", ");
+          throw new Error(msg || "Form submission failed");
+        }
+        throw new Error(resData?.error || "Form submission failed");
       }
 
-      e.currentTarget.reset();
+      form.reset();
       setStatus("success");
-    } catch {
+    } catch (err: unknown) {
+      if (err instanceof Error && err.message) {
+        setErrorMessage(err.message);
+      } else {
+        setErrorMessage("Something went wrong. Please try again.");
+      }
       setStatus("error");
     }
   }
@@ -90,7 +105,7 @@ export function ContactForm() {
           {status === "success"
             ? "Message sent — thanks for reaching out."
             : status === "error"
-              ? "Something went wrong. Please try again."
+              ? (errorMessage || "Something went wrong. Please try again.")
               : "We usually reply within a few days."}
         </p>
       </div>

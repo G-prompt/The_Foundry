@@ -40,6 +40,10 @@ The Foundry exists because building alone is slower and lonelier than it needs t
 ## Project structure
 
 ```
+public/
+  foundry.png           Community logo asset (transparent, theme-adaptive)
+  favicon.ico           Favicon
+  robots.txt            Search crawler directives
 src/
   app/
     layout.tsx            Root layout — fonts, ThemeProvider, Header, Footer
@@ -92,6 +96,7 @@ npm run start
 A few placeholders or configurations can be customized before launch:
 
 - **`src/lib/site.ts`** — verify `SLACK_INVITE_URL`, `COURSE_LIBRARY_URL`, `CONTACT_EMAIL`, `FORMSPREE_ENDPOINT`, and update `socials` with real GitHub/X/LinkedIn profile URLs
+- **`public/foundry.png`** — brand logo image asset (auto-adapts to light and dark themes)
 - **`src/components/site/Footer.tsx`** — social icon links
 - **`src/data/events.ts`** — sample events; wire up to real events or a CMS
 - **`src/data/posts.ts`** — sample blog posts; wire up to MDX or a CMS

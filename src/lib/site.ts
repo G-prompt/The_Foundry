@@ -4,7 +4,11 @@ export const SLACK_INVITE_URL =
 export const COURSE_LIBRARY_URL = "https://www.psdly.co.uk/free-course";
 
 export const CONTACT_EMAIL = "thefoundrymeet@gmail.com";
-export const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnpqwdye";
+export const FORMSPREE_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ||
+  (process.env.NEXT_PUBLIC_FORMSPREE_KEY
+    ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_KEY}`
+    : "https://formspree.io/f/mnpqwdye");
 
 // TODO: replace with real social profiles.
 export const socials = [

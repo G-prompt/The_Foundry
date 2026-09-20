@@ -3,7 +3,7 @@ import { Github, Linkedin, Slack, Twitter } from "lucide-react";
 
 import { ButtonAnchor } from "./Button";
 import { CONTACT_EMAIL, navLinks, SLACK_INVITE_URL } from "@/lib/site";
-
+import Image from "next/image";
 const socialIcons = [
   { label: "GitHub", href: "https://github.com/", Icon: Github }, // TODO: real URL
   { label: "X", href: "https://x.com/", Icon: Twitter }, // TODO: real URL
@@ -17,9 +17,13 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1.2fr]">
           <div className="min-w-0">
             <div className="flex items-center gap-2.5">
-              <span className="grid size-8 shrink-0 place-items-center rounded-md bg-primary font-mono text-sm font-bold text-primary-foreground">
-                F
-              </span>
+              <Image
+                      src="/foundry.png"
+                      width={50}
+                      height={50}
+                      alt="logo"
+                      className="brightness-0 dark:invert"
+                    />
               <span className="font-display text-base font-semibold">The Foundry</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">

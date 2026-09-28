@@ -1,14 +1,9 @@
 import Link from "next/link";
-import { Github, Linkedin, Slack, Twitter } from "lucide-react";
+import { Slack } from "lucide-react";
 
 import { ButtonAnchor } from "./Button";
-import { CONTACT_EMAIL, navLinks, SLACK_INVITE_URL } from "@/lib/site";
 import Image from "next/image";
-const socialIcons = [
-  { label: "GitHub", href: "https://github.com/", Icon: Github }, // TODO: real URL
-  { label: "X", href: "https://x.com/", Icon: Twitter }, // TODO: real URL
-  { label: "LinkedIn", href: "https://linkedin.com/", Icon: Linkedin }, // TODO: real URL
-];
+import { CONTACT_EMAIL, navLinks, SLACK_INVITE_URL, socials } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -18,12 +13,12 @@ export function Footer() {
           <div className="min-w-0">
             <div className="flex items-center gap-2.5">
               <Image
-                      src="/foundry.png"
-                      width={50}
-                      height={50}
-                      alt="logo"
-                      className="brightness-0 dark:invert"
-                    />
+                src="/foundry.png"
+                width={50}
+                height={50}
+                alt="The Foundry logo"
+                className="brightness-0 dark:invert"
+              />
               <span className="font-display text-base font-semibold">The Foundry</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
@@ -31,17 +26,13 @@ export function Footer() {
               learn out loud.
             </p>
             <div className="mt-5 flex items-center gap-2">
-              {socialIcons.map(({ label, href, Icon }) => (
-                <a
+              {socials.map(({ label }) => (
+                <span
                   key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label={label}
-                  className="grid size-9 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="rounded-md border border-border px-2.5 py-1.5 font-mono text-xs text-muted-foreground"
                 >
-                  <Icon className="size-4" />
-                </a>
+                  {label} · Coming soon
+                </span>
               ))}
             </div>
           </div>

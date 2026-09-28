@@ -69,51 +69,57 @@ export function BlogClient() {
     <PageTransition>
       <PageHero
         eyebrow="Blog"
-        title="Written by members, for members."
-        description="Postmortems, tutorials, and honest write-ups from people mid-project — not polished thought leadership."
+        title="Notes from the community."
+        description="The Foundry blog is being prepared. Member stories and project notes will appear here when they are ready."
       />
 
       <SectionWrapper>
-        <div role="tablist" aria-label="Filter posts by category" className="flex flex-wrap gap-2">
-          {filters.map((item) => (
-            <button
-              key={item}
-              type="button"
-              role="tab"
-              aria-selected={filter === item}
-              onClick={() => setFilter(item)}
-              className={cn(
-                "rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                filter === item
-                  ? "border-accent bg-accent text-accent-foreground"
-                  : "border-border bg-surface text-muted-foreground hover:border-accent hover:text-accent",
-              )}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+        {posts.length === 0 ? (
+          <div className="border-y border-border py-12">
+            <p className="eyebrow">From the community</p>
+            <h2 className="mt-3 font-display text-2xl font-semibold">Coming soon</h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              Member stories and project notes will appear here once the community starts publishing.
+            </p>
+          </div>
+        ) : (
+          <>
+            <div role="tablist" aria-label="Filter posts by category" className="flex flex-wrap gap-2">
+              {filters.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  role="tab"
+                  aria-selected={filter === item}
+                  onClick={() => setFilter(item)}
+                  className={cn(
+                    "rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    filter === item
+                      ? "border-accent bg-accent text-accent-foreground"
+                      : "border-border bg-surface text-muted-foreground hover:border-accent hover:text-accent",
+                  )}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={filter}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {visible.map((post, i) => (
-              <PostCard key={post.slug} post={post} featured={i === 0 && filter === "All"} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
-
-        {visible.length === 0 ? (
-          <p className="mt-10 rounded-xl border border-dashed border-border p-8 text-sm text-muted-foreground">
-            No posts in this category yet.
-          </p>
-        ) : null}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={filter}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+              >
+                {visible.map((post, i) => (
+                  <PostCard key={post.slug} post={post} featured={i === 0 && filter === "All"} />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </>
+        )}
       </SectionWrapper>
     </PageTransition>
   );

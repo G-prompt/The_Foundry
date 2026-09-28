@@ -129,6 +129,23 @@
   mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 10%, transparent 75%);
 }
 
+@utility foundry-logo {
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  background-color: var(--color-foreground);
+  -webkit-mask-image: url("/foundry-mark.png");
+  mask-image: url("/foundry-mark.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+}
+
 @utility eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;

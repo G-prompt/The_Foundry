@@ -91,7 +91,7 @@ npm run build
 npm run start
 ```
 
-## Things to swap before launch
+## Content status
 
 A few placeholders or configurations can be customized before launch:
 
@@ -101,3 +101,5 @@ A few placeholders or configurations can be customized before launch:
 - **`src/data/events.ts`** — sample events; wire up to real events or a CMS
 - **`src/data/posts.ts`** — sample blog posts; wire up to MDX or a CMS
 - **`src/app/about/page.tsx`** — placeholder organizer names/initials; swap for real people and avatars
+
+The contact form submits to Formspree without a custom backend. Confirm the endpoint is active before relying on form submissions. The Slack invite and contact email should also be verified before launch.

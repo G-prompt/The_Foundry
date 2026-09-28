@@ -82,14 +82,9 @@ export default function Contact() {
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {socials.map((social) => (
                     <li key={social.label}>
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="inline-flex rounded-md border border-border px-3 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:border-accent hover:text-accent"
-                      >
-                        {social.label}
-                      </a>
+                      <span className="inline-flex rounded-md border border-border px-3 py-1.5 font-mono text-xs text-muted-foreground">
+                        {social.label} · Coming soon
+                      </span>
                     </li>
                   ))}
                 </ul>

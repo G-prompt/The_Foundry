@@ -4,12 +4,11 @@ import { BlogClient } from "./BlogClient";
 
 export const metadata: Metadata = {
   title: "Blog — Notes from The Foundry community",
-  description:
-    "Essays and field notes from Foundry members on engineering craft, open-source maintenance, community, and learning in public.",
+  description: "The Foundry community blog is coming soon.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Blog — The Foundry",
-    description: "Field notes on engineering, open source, and learning in public.",
+    description: "The Foundry community blog is coming soon.",
     url: "/blog",
     type: "website",
   },

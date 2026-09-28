@@ -45,13 +45,6 @@ const offerings = [
   },
 ];
 
-const stats = [
-  { value: "1,200+", label: "Members" },
-  { value: "90+", label: "Open projects" },
-  { value: "48", label: "Events hosted" },
-  { value: "100%", label: "Open source" },
-];
-
 export default function Home() {
   const upcoming = events.filter((e) => e.status === "upcoming").slice(0, 3);
   const latest = posts.slice(0, 3);
@@ -85,23 +78,11 @@ export default function Home() {
                 Join the Community <ArrowRight className="size-4" />
               </ButtonAnchor>
               <ButtonLink href="/events" variant="outline" size="lg">
-                See upcoming events
+                Event calendar
               </ButtonLink>
             </div>
           </Reveal>
 
-          <Reveal delay={0.15} className="mt-16">
-            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
-              {stats.map((s) => (
-                <div key={s.label} className="bg-surface px-5 py-6">
-                  <dt className="eyebrow">{s.label}</dt>
-                  <dd className="mt-2 font-display text-2xl font-semibold sm:text-3xl">
-                    {s.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
         </div>
       </section>
 
@@ -135,27 +116,33 @@ export default function Home() {
         <SectionHeading
           eyebrow="Calendar"
           title="What's coming up"
-          description="Hackathons, seminars, and open sessions — most of them free and remote-friendly."
+          description="We are planning the first Foundry events. Confirmed dates will be shared here."
         />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {upcoming.map((event, i) => (
-            <Reveal key={event.id} delay={i * 0.07}>
-              <Card className="h-full bg-background">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Tag tone="accent">{event.category}</Tag>
-                  <Tag>{event.format}</Tag>
-                </div>
-                <h3 className="mt-4 font-display text-lg font-semibold">{event.title}</h3>
-                <p className="mt-1 font-mono text-xs text-muted-foreground">
-                  {event.dateLabel} · {event.location}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {event.description}
-                </p>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
+        {upcoming.length ? (
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {upcoming.map((event, i) => (
+              <Reveal key={event.id} delay={i * 0.07}>
+                <Card className="h-full bg-background">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Tag tone="accent">{event.category}</Tag>
+                    <Tag>{event.format}</Tag>
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold">{event.title}</h3>
+                  <p className="mt-1 font-mono text-xs text-muted-foreground">
+                    {event.dateLabel} · {event.location}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {event.description}
+                  </p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-8 border-y border-border py-6 text-sm text-muted-foreground">
+            Events are coming soon. We will share the calendar here once dates are confirmed.
+          </p>
+        )}
         <Reveal delay={0.1} className="mt-8">
           <ButtonLink href="/events" variant="outline" size="sm">
             All events
@@ -166,22 +153,28 @@ export default function Home() {
       {/* Latest writing */}
       <SectionWrapper>
         <SectionHeading eyebrow="Journal" title="From the community" />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {latest.map((post, i) => (
-            <Reveal key={post.slug} delay={i * 0.07}>
-              <Card className="h-full">
-                <Tag>{post.category}</Tag>
-                <h3 className="mt-4 font-display text-lg font-semibold">{post.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {post.excerpt}
-                </p>
-                <p className="mt-5 font-mono text-xs text-muted-foreground">
-                  {post.author} · {post.readTime}
-                </p>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
+        {latest.length ? (
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {latest.map((post, i) => (
+              <Reveal key={post.slug} delay={i * 0.07}>
+                <Card className="h-full">
+                  <Tag>{post.category}</Tag>
+                  <h3 className="mt-4 font-display text-lg font-semibold">{post.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {post.excerpt}
+                  </p>
+                  <p className="mt-5 font-mono text-xs text-muted-foreground">
+                    {post.author} · {post.readTime}
+                  </p>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-8 border-y border-border py-6 text-sm text-muted-foreground">
+            Member writing is coming soon.
+          </p>
+        )}
         <Reveal delay={0.1} className="mt-8">
           <ButtonLink href="/blog" variant="outline" size="sm">
             Read the blog

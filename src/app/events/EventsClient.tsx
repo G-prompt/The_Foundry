@@ -93,8 +93,8 @@ export function EventsClient() {
     <PageTransition>
       <PageHero
         eyebrow="Events"
-        title="Show up, build something, go home tired."
-        description="Hackathons that ship, seminars that go deep, and low-key sessions where you can just ask the question you've been sitting on."
+        title="Our events are taking shape."
+        description="We are planning workshops, build sessions, and meetups for the community. Confirmed dates will be posted here."
       >
         <ButtonAnchor href={SLACK_INVITE_URL} target="_blank" rel="noreferrer noopener">
           Get event invites in Slack
@@ -102,51 +102,63 @@ export function EventsClient() {
       </PageHero>
 
       <SectionWrapper>
-        <div
-          role="tablist"
-          aria-label="Filter events by category"
-          className="flex flex-wrap gap-2"
-        >
-          {filters.map((item) => (
-            <button
-              key={item}
-              type="button"
-              role="tab"
-              aria-selected={filter === item}
-              onClick={() => setFilter(item)}
-              className={cn(
-                "rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                filter === item
-                  ? "border-accent bg-accent text-accent-foreground"
-                  : "border-border bg-surface text-muted-foreground hover:border-accent hover:text-accent",
-              )}
+        {events.length === 0 ? (
+          <div className="border-y border-border py-12">
+            <p className="eyebrow">Events</p>
+            <h2 className="mt-3 font-display text-2xl font-semibold">Coming soon</h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              We are planning the first Foundry events. The calendar will appear here when dates are confirmed.
+            </p>
+          </div>
+        ) : (
+          <>
+            <div
+              role="tablist"
+              aria-label="Filter events by category"
+              className="flex flex-wrap gap-2"
             >
-              {item}
-            </button>
-          ))}
-        </div>
+              {filters.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  role="tab"
+                  aria-selected={filter === item}
+                  onClick={() => setFilter(item)}
+                  className={cn(
+                    "rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    filter === item
+                      ? "border-accent bg-accent text-accent-foreground"
+                      : "border-border bg-surface text-muted-foreground hover:border-accent hover:text-accent",
+                  )}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
 
-        <div className="mt-14">
-          <SectionHeading eyebrow="Upcoming" title="Next up" />
-          {upcoming.length ? (
-            <EventGrid items={upcoming} />
-          ) : (
-            <p className="mt-8 rounded-xl border border-dashed border-border p-8 text-sm text-muted-foreground">
-              Nothing scheduled in this category yet — check Slack for new announcements.
-            </p>
-          )}
-        </div>
+            <div className="mt-14">
+              <SectionHeading eyebrow="Upcoming" title="Next up" />
+              {upcoming.length ? (
+                <EventGrid items={upcoming} />
+              ) : (
+                <p className="mt-8 rounded-xl border border-dashed border-border p-8 text-sm text-muted-foreground">
+                  Nothing scheduled in this category yet — check Slack for new announcements.
+                </p>
+              )}
+            </div>
 
-        <div className="mt-20">
-          <SectionHeading eyebrow="Archive" title="Past events" />
-          {past.length ? (
-            <EventGrid items={past} />
-          ) : (
-            <p className="mt-8 rounded-xl border border-dashed border-border p-8 text-sm text-muted-foreground">
-              No archived events in this category.
-            </p>
-          )}
-        </div>
+            <div className="mt-20">
+              <SectionHeading eyebrow="Archive" title="Past events" />
+              {past.length ? (
+                <EventGrid items={past} />
+              ) : (
+                <p className="mt-8 rounded-xl border border-dashed border-border p-8 text-sm text-muted-foreground">
+                  No archived events in this category.
+                </p>
+              )}
+            </div>
+          </>
+        )}
       </SectionWrapper>
     </PageTransition>
   );

@@ -10,11 +10,10 @@ export const FORMSPREE_ENDPOINT =
     ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_KEY}`
     : "https://formspree.io/f/mnpqwdye");
 
-// TODO: replace with real social profiles.
 export const socials = [
-  { label: "GitHub", href: "https://github.com/" },
-  { label: "X", href: "https://x.com/" },
-  { label: "LinkedIn", href: "https://linkedin.com/" },
+  { label: "GitHub" },
+  { label: "X" },
+  { label: "LinkedIn" },
 ] as const;
 
 export const navLinks = [

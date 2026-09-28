@@ -4,12 +4,11 @@ import { EventsClient } from "./EventsClient";
 
 export const metadata: Metadata = {
   title: "Events — Hackathons, Seminars & Meetups | The Foundry",
-  description:
-    "Browse The Foundry's upcoming and past events: 48-hour hackathons, technical seminars, reading groups, and open office hours — in person and virtual.",
+  description: "The Foundry's event calendar is coming soon.",
   alternates: { canonical: "/events" },
   openGraph: {
     title: "Events — The Foundry",
-    description: "Hackathons, seminars, and community sessions run by The Foundry.",
+    description: "The Foundry's event calendar is coming soon.",
     url: "/events",
   },
 };

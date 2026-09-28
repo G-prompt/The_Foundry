@@ -38,37 +38,6 @@ const expectations = [
   },
 ];
 
-// TODO: replace placeholder organizers with real people and avatar images.
-const organizers = [
-  { name: "Ada Okonkwo", role: "Community Lead", initials: "AO" },
-  { name: "Miguel Santos", role: "Events", initials: "MS" },
-  { name: "Lin Wei", role: "Open Source", initials: "LW" },
-  { name: "Priya Raman", role: "Learning Programs", initials: "PR" },
-];
-
-const timeline = [
-  {
-    year: "2023",
-    title: "A group chat that wouldn't stop",
-    body: "Six engineers reviewing each other's side projects on weekends. No name, no schedule, just momentum.",
-  },
-  {
-    year: "2024",
-    title: "The first Forge weekend",
-    body: "Forty people, one rented room, nine repos. We wrote everything down and open-sourced the playbook.",
-  },
-  {
-    year: "2025",
-    title: "Programs, not just events",
-    body: "Reading groups, mentor office hours, and a public project board turned bursts into a rhythm.",
-  },
-  {
-    year: "Today",
-    title: "1,200 members building in public",
-    body: "Still volunteer-run, still free, still governed in the open by the people who show up.",
-  },
-];
-
 export default function About() {
   return (
     <PageTransition>
@@ -84,19 +53,9 @@ export default function About() {
 
       <SectionWrapper>
         <SectionHeading eyebrow="Our story" title="How we got here" />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
-          {timeline.map((item, i) => (
-            <li key={item.year} className="bg-surface">
-              <Reveal delay={i * 0.06} className="h-full p-7">
-                <p className="font-mono text-xs tracking-[0.14em] text-accent">{item.year}</p>
-                <h3 className="mt-3 font-display text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {item.body}
-                </p>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
+        <p className="mt-8 max-w-2xl border-y border-border py-6 text-sm leading-relaxed text-muted-foreground">
+          The Foundry is taking shape. Our story will appear here as the community grows.
+        </p>
       </SectionWrapper>
 
       <SectionWrapper className="border-y border-border bg-surface">
@@ -121,28 +80,10 @@ export default function About() {
       </SectionWrapper>
 
       <SectionWrapper className="pb-24">
-        <SectionHeading
-          eyebrow="Organizers"
-          title="The people keeping the lights on"
-          description="Volunteers who run events, review contributions, and answer questions in Slack."
-        />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {organizers.map((person, i) => (
-            <Reveal key={person.name} delay={i * 0.06}>
-              <Card className="h-full items-start">
-                <div
-                  className="grid size-14 place-items-center rounded-full border border-border bg-secondary font-mono text-sm text-muted-foreground"
-                  role="img"
-                  aria-label={`${person.name} avatar placeholder`}
-                >
-                  {person.initials}
-                </div>
-                <h3 className="mt-4 font-display text-base font-semibold">{person.name}</h3>
-                <p className="mt-1 font-mono text-xs text-muted-foreground">{person.role}</p>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
+        <SectionHeading eyebrow="Organizers" title="Meet the team" />
+        <p className="mt-8 max-w-2xl border-y border-border py-6 text-sm leading-relaxed text-muted-foreground">
+          Team profiles are coming soon.
+        </p>
       </SectionWrapper>
     </PageTransition>
   );

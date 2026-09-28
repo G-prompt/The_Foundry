@@ -65,7 +65,7 @@ export default function Mission() {
         title="Make building together the default."
         description="We exist to give curious builders a place where knowledge circulates freely, collaboration is the norm rather than the exception, and everything we make stays open for the next person."
       >
-        <ButtonLink href="/events">See what we run</ButtonLink>
+        <ButtonLink href="/events">Event calendar</ButtonLink>
       </PageHero>
 
       <SectionWrapper>

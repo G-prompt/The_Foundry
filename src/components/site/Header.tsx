@@ -24,7 +24,7 @@ function Logo() {
         src="/foundry.png"
         width={50}
         height={50}
-        alt="logo"
+        alt="The Foundry logo"
         className="brightness-0 dark:invert"
       />
       <span className="truncate font-display text-base font-semibold tracking-tight">
